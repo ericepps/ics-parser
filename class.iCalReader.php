@@ -318,5 +318,17 @@ class ICal
 
         return $extendedEvents;
     }
+    public function eventsAsICS($events) {
+        $icsFile = "BEGIN:VCALENDAR\r\nVERSION:2.0";
+        foreach($events as $anEvent) {
+            $icsFile .= "BEGIN:VEVENT\r\n";
+            $icsFile .= "DTSTART:".$anEvent['DTSTART']."\r\n";
+            $icsFile .= "DTEND:".$anEvent['DTEND']."\r\n";
+            $icsFile .= "SUMMARY:".$anEvent['SUMMARY']."\r\n";
+            $icsFile .= "LOCATION:".$anEvent['LOCATION']."\r\n";
+            $icsFile .= "END:VEVENT\r\n";
+        }
+        return $icsFile;
+    }
 } 
 ?>
